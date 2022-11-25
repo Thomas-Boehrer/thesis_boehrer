@@ -1,0 +1,664 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{=html}
+<!--
+This is for including Chapter 1.  Notice that it's also good practice to name your chunk.  This will help you debug potential issues as you knit.  The chunk above is called intro and the one below is called chapter1.  Feel free to change the name of the Rmd file as you wish, but don't forget to change it here from chap1.Rmd.
+-->
+```
+```{=html}
+<!--
+The {#rmd-basics} text after the chapter declaration will allow us to link throughout the document back to the beginning of Chapter 1.  These labels will automatically be generated (if not specified) by changing the spaces to hyphens and capital letters to lowercase.  Look for the reference to this label at the beginning of Chapter 2.
+-->
+```
+```{=html}
+<!--
+The first real chapter is the Materials and Methods section
+
+1. Start with the Study Site:
+  South Orkney: Ecology, special features 
+    do some Literature research
+
+  Bransfield Strait: short comparison with South Orkney  
+     again some research for krill and the location
+     
+  Gerlache Strait: maybe differences
+    krill in the Gerlache Strait as research and extract the important parts 
+-->
+```
+# Materials & Methods {#materials-methods}
+
+The second chapter first describes the data collection during a cruise
+in the Southern Ocean. Then how the acoustic record used in the thesis
+is processed and analysed. The final part of the [Materials &
+Methods](#materials-methods) focuses on treating the light data.
+
+```{r CCAMLRConventionAreaMapAtlanticCropped, fig.cap = "Fishing Areas in the Southern Atlantic (CCAMLR. Map of the CAMLR Convention Area. Last updated October 2017. www.ccamlr.org/node/86816)", echo=FALSE, fig.align="center", out.extra="angle=0, scale =0.8"}
+knitr::include_graphics(path = "figure/CCAMLRConventionAreaMapAtlanticCropped.pdf")
+```
+
+## Data Collection
+
+The data used in the thesis originates from a cruise of a krill trawler
+that fished in the Atlantic part of the Southern Ocean for eight months.
+CCAMLR - the Convention on the Conservation of Antarctic Marine Living
+Resources regulates the krill fishery and is responsible for dividing
+the Southern Ocean into fishing areas (fig.
+\@ref(fig:CCAMLRConventionAreaMapAtlanticCropped)).
+
+The vessel that collected the data was the "Antarctic Endurance" from
+Aker BioMarine, a Norwegian company harvesting Antarctic krill. During
+2020/21, the vessel fished in CCAMLR subareas 48.1, covering the
+Bransfield and Gerlache Strait, and 48.2, which covers the waters north
+of the South Orkney Islands.
+
+The "Antarctic Endurance" is equipped with a hull-mounted ES80, Simrad
+(echosounder) from Kongsberg, Maritime AS, Norway, with operating
+frequencies of 38kHz and 200 kHz, that records constantly. An
+*echosounder* is a device that uses sonar technology to measure physical
+or biological components underwater. In this case, the sound recording
+helps to detect krill swarms. The ship's echosounder recorded an
+eight-month underwater acoustic dataset during the cruise. This dataset
+forms the basis for the thesis.
+
+```{r mapBathEcho, fig.cap = "Sampling Locations of the Acoustic Data", echo=FALSE, fig.align="left", out.extra="angle=0, scale =0.4"}
+knitr::include_graphics(path = "figure/mapBathPupAcoustics.pdf")
+```
+
+The cruise route does not follow a systematical pattern but depends on
+the vessel's fishing success. In December 2020, the "Antarctic
+Endurance" fished the waters north of the South Orkney Islands and
+transitioned into the Bransfield Strait. From there, it returned to the
+South Orkney Islands in January. In March and April, the trawler crossed
+the Bransfield Strait, coming from the waters around the South Orkney
+Islands to the Gerlache Strait, where it harvested krill for a short
+time. In late autumn (May), the vessel started its turn back to the
+South Orkney Islands, which it reached in June (fig.
+\@ref(fig:mapBathEcho)).
+
+Light data taken during the cruise, at the surface and underwater,
+complement the acoustic data record (Fig. \@ref(fig:mapBathLight)). From
+4 May to 13 June, a light sensor, a RAMSES G2-ACC-VIS from TriOS Mess-
+und Datentechnik GmbH, took a total of 88 atmospheric and eight
+underwater light measurements. A software ("MSDA_XE") calibrated the raw
+data for underwater and surface light measurements. The irradiance
+record consists of intensities in W/m\textsuperscript{2} for a range of
+wavelengths from 320 - 950 nm. In 10-second intervals, the sensor
+collected the light data - at the surface at the highest point of the
+fishery vessel and underwater attached to a CTD-Sonde. The CTD-Sonde was
+fixed to a 200 m rope. The rope was lowered into the water in two-metre
+steps for underwater measurements. Because of drifting, the CDT-Sonde
+reached its deepest point at \~188 m water depth.
+
+In the following two sections, the processing of the acoustic data and
+the handling of the light data are discussed in more detail.
+
+```{r mapBathLight, fig.cap = "Positions of Light Data Measurements", echo=FALSE, fig.align="left", out.extra="angle=0, scale =0.4"}
+knitr::include_graphics(path = "figure/mapBathPupLight.pdf")
+```
+
+\clearpage
+
+## Acoustic Data
+
+The chapter describes the workflow of acoustic data processing. For the
+analysis, we used the R programming language [@Rcore].
+
+The acoustic data consist of multiple files that store information on
+time, depth and backscattering intensity. Figure
+\@ref(fig:rawAcousticsThesis) visualises a typical acoustic record (Here
+from the beginning of February). The backscattering signal contains four
+different essential features (highlighted by the corresponding numbers):
+
+1.  Residues from the preprocessing (described in [From Screenshot to
+    Dataset])
+2.  Sea floor
+3.  Krill signal
+4.  Instrument noise that amplifies with increasing depth
+
+To analyse the krill record, one must exclude all other influences. The
+following section describes the data-cleaning process to isolate the
+krill signal. Figure \@ref(fig:cropedWorkflow) provides an overview of
+the whole process.
+
+```{r rawAcousticsThesis, fig.cap = "Acoustic record of relative backscattering values",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.95"}
+knitr::include_graphics(path = "figure/rawAcousticsThesis.pdf")
+```
+
+```{=html}
+<!--
+the next section of the data processing 
+-->
+```
+### From Screenshot to Dataset
+
+To reach the state of fig \@ref(fig:rawAcousticsThesis), the following
+preprocessing step is necessary. Due to a faulty onboard recording
+system, no raw data from the acoustic record is available. Therefore,
+the acoustic dataset was reconstructed from more than 18,000
+screenshots. These screenshots contain the whole time series of
+backscattering data. They are stored automatically by krillViz, an
+Aker-internal system that allows exchanging information on krill stock
+between the own fishing fleet.
+
+\clearpage
+
+```{r cropedWorkflow, fig.cap = "Steps of the Data Pipe to process the acoustic data", echo=FALSE, fig.align="center", out.extra="angle=0, scale =1.75"}
+knitr::include_graphics(path = "figure/cropWorkSolLast.pdf")
+```
+
+\clearpage
+
+RGB values were matched for every pixel in the screenshots based on the
+colour scale used for the visualisations. The colour values of the
+original scale can be reviewed on the support website for "Echoview"
+(<https://support.echoview.com/WebHelp/Using_Echoview/Echogram/About_color_schemes.htm#EK80_colors>).
+
+```{=html}
+<!--
+maybe figure for colour scheme
+-->
+```
+Then the extracted colour value of each pixel within the screenshots was
+matched with the closest value of the colour scheme using the Euclidean
+Distance of red, blue, and green. The relative position on the colour
+scheme assigns a value between 0 and 1 to every pixel of the screenshots
+(fig. \@ref(fig:rgbArray)).
+
+```{r rgbArray, fig.cap = "Reconstruction of relative backscattering values", echo=FALSE, fig.align="center", out.extra="angle=0, scale =.3"}
+knitr::include_graphics(path = "figure/rgbArray.png")
+```
+
+The depth information for every pixel was calculated by multiplying the
+relative vertical position from 0 to 1 with the maximum depth recorded
+in the screenshot. Linear scaling of the relative horizontal position
+helped to reconstruct the time information. The visually extracted time
+information made it possible to define the time interval. The "goodness
+of fit" was inspected visually. Figure \@ref(fig:transformImages) shows
+a comparison of one screenshot and the corresponding file after
+transformation. The result is an acoustic record of multiple files that
+contain relative backscattering values (fig.
+\@ref(fig:rawAcousticsThesis)). The reconstructed datasets contain
+residues from the screenshots - like times that are displayed on the
+screens - that need to be removed from the datasets (described in
+[Visual Removal of Remnants])
+
+```{r transformImages, fig.cap = "Comparison between screenshot and reconstructed data", echo=FALSE, fig.align="center", out.extra="angle=0, scale =.3"}
+knitr::include_graphics(path = "figure/transformImages.png")
+```
+
+```{=html}
+<!--
+the next section of the data processing 
+-->
+```
+\clearpage
+
+### Unifying Depth- & Time-Scales
+
+Since depth and time were reconstructed on relative scales for every
+data file, it was necessary to unify the steps of both variables across
+multiple datasets. The time is resolved in three-minute steps, and the
+depth in 0.67 m steps. The means of the combined/downsampled
+backscattered values were calculated to avoid losing information about
+the acoustic signal. Times that do not contain information on krill are
+excluded from further analysis by visual control.
+
+```{=html}
+<!--
+the next section of the data processing 
+-->
+```
+### Sea Floor Detection
+
+The removal of the sea floor is an essential point in the process of
+freeing the krill signal from external influences. As soon as sea floor
+is present in the data, the algorithm recognises it and marks the
+respective depth (fig. \@ref(fig:seaFloorAcousticsThesis)). In this
+analysis step, only the sea floor's initialisation takes place. The
+actual removal happens after the denoising part of the process (fig.
+\@ref(fig:cropedWorkflow)). The applied line-picking algorithm divides
+into four steps, highlighted in fig. \@ref(fig:seaFloorPickingSchem).
+
+```{r seaFloorAcousticsThesis, fig.cap = "Line picking algorithm applied to the data example",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.95"}
+knitr::include_graphics(path = "figure/seaFloorAcousticsThesis.pdf")
+```
+
+The steps of the algorithm:
+
+1.  Search within the depth limits of the customised selection to find
+    the sample with maximum backscattering strength. The maximum depth
+    is set to the full depth range of the dataset by default. This is
+    done to reduce the possibility of picking an artefact from the
+    vessel as the sea floor.
+
+2.  Then the algorithm defines a minimum backscattering value for a
+    "good" bottom line pick.
+
+3.  A search interval between the maximum backscattering value and the
+    minimum depth is searched for a discriminant value that defines the
+    last signal of the sea floor and therefore represents the bottom.
+
+4.  If the maximum backscattering value is marked as a good fit for the
+    sea floor, the index of the discriminant value appears to be the sea
+    floor. Else, no bottom is recognised by the algorithm.
+
+```{r seaFloorPickingSchem, fig.cap = "Line Picking Algorithm for one sample", echo=FALSE, fig.align="center", out.extra="angle=0, scale =0.6"}
+knitr::include_graphics(path = "figure/seaFloorPickingSchem.pdf")
+```
+
+| Setting                       | Default Value |
+|-------------------------------|--------------:|
+| Discrimination Level          |           0.5 |
+| Minimum value for a good pick |          0.95 |
+| Start depth                   |          10 m |
+| Stop depth                    |    max. depth |
+
+: Default Settings of the Line Picking Algorithm
+
+\clearpage
+
+### Denoising
+
+The denoising section of the thesis leads through the steps that are
+necessary to remove background noise from the acoustic record.
+
+#### *Algorithm Summary* {.unlisted .unnumbered}
+
+The denoising part of the data cleaning process is essential to isolate
+biomass signals from instrument noise that both have been received from
+the transducer. Here the method is based on the proposed post-processing
+technic to remove background noise of @AbDeRobertis2007.\
+The algorithm assumes that a portion of the signal is dominated by
+background noise. Therefore, it estimates the background noise for every
+sample and subtracts the calculated noise value from the received
+signal.
+
+The algorithm divides into four main parts that are described in detail
+below. During the first step, the backscattering score is transformed,
+based on the physical properties of the seawater, into a value in dB
+(decibel). Second, the converted signal is used to estimate the noise
+for every sample by averaging over a particular grid cell (fig.
+\@ref(fig:denoisngSmallScaleSchematic)). The size of the grid cell is
+individually selected per data set and the extent is defined by time and
+depth. The third step is to correct high noise levels by setting a
+maximum value and utilising it when it is exceeded. In the end, the
+estimated noise gets subtracted from the measured backscattering value.
+Figure \@ref(fig:denoisedAcousticsThesis) shows an example of a
+noise-free echogram.
+
+```{r denoisedAcousticsThesis, fig.cap = "Acoustic Data with noise removed",echo=FALSE, fig.align="left", out.extra="angle=0, scale =.95"}
+knitr::include_graphics(path = "figure/denoisedAcousticsThesis.pdf")
+```
+
+#### *Converting Intensity Scores in dB-Values* {.unlisted .unnumbered}
+
+First, the relative backscatter values (1 to 0) were re-scaled from 0 to
+-70 dB (the decibel values correspond to the colour scale used for
+processing the screenshots). The newly generated values correspond to
+the measured mean volume backscatter strength ($S_{v, meas}$), that
+should have been received by the transducer.
+
+After the conversion, the actual backscattering strength was calculated
+by removing the influences of signal absorption in the water and the
+range-dependent time-varied gain (TVG). (Details are in the Appendix A:
+[Calculation of the TVG and Range Amplification])
+
+The calculated power ($Power_{cal}$) is the logarithmic measure of the
+received power ($S_{v, meas}$), adjusted for environmental factors and
+echosounder characteristics (details on echosounder characteristics and
+environmental factors are in [Calculation of the TVG and Range
+Amplification]). The power ($Power_{cal}$) is calculated as follows:
+
+```{=tex}
+\begin{equation} 
+\begin{split}
+ Power_{cal}(i,j) &= S_{v, meas}(i,j) - (20 log_{10}(r_{tvg}(i,j)) + 2 \alpha r_{tvg}(i,j)).
+\end{split}
+(\#eq:PowerCal)
+\end{equation}
+```
+$S_{v, meas}(i,j)$ is the backscattering strength at one position,
+$r_{tvg}(i,j)$ represents the range amplification, and $\alpha$ stands
+for the absorption coefficient (sound absorption coefficient that
+depends on environmental factors). Afterwards, the formula,
+
+```{=tex}
+\begin{equation} 
+\begin{split}
+ Power_{cal, trans}(i,j) &= 10^{Power_{cal}(i,j)/10}
+\end{split}
+(\#eq:PowerCalTrans)
+\end{equation}
+```
+transforms the value back into decibels. $Power_{cal, trans}$ represent
+the actual backscattering values (in decibels) freed from environmental
+and echosounder influences.
+
+#### *Noise Estimations* {.unlisted .unnumbered}
+
+The algorithm analyses the echogram of the $Power_{cal, trans}$-values
+by averaging over a grid cell with a fixed horizontal and vertical
+extent. The noise estimate for every ping is the average of its cell.
+The sliding cell does not shrink at the ends of the echogram. Therefore,
+the pings on the side can not be corrected while appearing in the middle
+of the averaging window. Figure \@ref(fig:denoisngSmallScaleSchematic)
+describes the process. The mean of the values within the grid cell are
+the noise of the ping.
+
+```{r denoisngSmallScaleSchematic, fig.cap = "Averaging intervall of a grid cell",echo=FALSE, fig.align="center", out.extra="angle=0, scale =1"}
+knitr::include_graphics(path = "figure/denoisngSmallScaleSchematic.pdf")
+```
+
+#### *Maximum Threshold Noise* {.unlisted .unnumbered}
+
+A maximum threshold is applied to the calculated noise estimates for
+high noise estimations.
+
+```{=tex}
+\begin{equation} 
+\begin{split}
+ if \; \; Noise(i, j) > Noise_{max} \; \; 
+\Rightarrow \; \; Noise(i, j) = Noise_{max}
+\end{split}
+(\#eq:noiseEst)
+\end{equation}
+```
+#### *Noise Removal* {.unlisted .unnumbered}
+
+In the end, the noise estimates ($S_{v, noise}$) are calculated by
+adding the amplification effect and the absorption coefficient:
+
+```{=tex}
+\begin{equation} 
+\begin{split}
+ S_{v, noise}(i,j) &= Noise(i, j) + (20 log_{10}(r_{tvg}(i,j)) + 2 \alpha r_{tvg}(i,j)).
+\end{split}
+(\#eq:noiseSv)
+\end{equation}
+```
+The estimated noise is subtracted from $S_{v, meas}$ to obtain the noise
+corrected value ($S_{v, corr}$) by:
+
+```{=tex}
+\begin{equation} 
+\begin{split}
+ S_{v, corr}(i,j) &= 10 log_{10}(10^{S_{v, meas}(i,j)/10} - 10^{S_{v, noise}(i,j)/10}).
+\end{split}
+(\#eq:PowerCalTrans)
+\end{equation}
+```
+| Setting           |       Default Value |
+|-------------------|--------------------:|
+| Frequency         |           38,000 Hz |
+| Pulse Duration    |          0.001024 s |
+| Vertical Extent   |                40 m |
+| Horizontal Extent |             360 min |
+| Temperature       |     2 \textdegree C |
+| Salinity          | 34 \textperthousand |
+| pH-Value          |                 8.1 |
+| Maximum Noise     |              -90 dB |
+
+: Default Input for the Noise Removal
+
+```{=html}
+<!--
+Here stop the denoising part
+-->
+```
+### Visual Removal of Remnants
+
+At this stage, the data sets look as like in figure
+\@ref(fig:denoisedAcousticsThesis) In order to obtain a satisfactory
+final result that only includes the krill signal, the seabed, top
+metres, and obvious disturbance factors must be removed. The uppermost
+section of the echogram is dominated by the ship's echo and the
+influence of waves. In this particular case, remnants from the
+screenshot processing contribute to the disturbance shortly below the
+surface. In addition, some time series segments that do not contain a
+relevant krill signal are removed.
+
+```{r completeAcousticsThesis, fig.cap = "Krill Signal after the Cleaning Process",echo=FALSE, fig.align="right", out.extra="angle=0, scale =.95"}
+knitr::include_graphics(path = "figure/completeAcousticsThesis.pdf")
+```
+
+```{=html}
+<!--
+For every echogram, one can review the manually omitted sections in the file cleaningInput.xlsx. (not entirely sure where to include it, later maybe in the appendix)
+Here, the denosing part is over and the metrics calculation start
+-->
+```
+### Metrics
+
+Three metrics describe the eight months-spanning datasets selected to
+characterize the behaviour of Antarctic krill over time. The vessel
+(Antarctic Endurance) exclusively fished for Antarctic krill. Therefore,
+we assume that the biomass signal in our dataset does, to a large
+extent, represent Antarctic krill and no other organisms. From the
+backscattering signal, the herein metrics were derived to describe the
+vertical structure and the dynamics of krill swarms [@Bez;
+@Woillez2007].
+
+```{=html}
+<!--
+Centre Of Mass
+-->
+```
+##### *Centre of Mass (CM)*
+
+is an indicator for the vertical position of krill. It describes the
+mean location of the swarm in the water column [@Bez; @Urmy2012]. It is
+the average of all depths sampled weighted by their backscattering
+values:
+
+```{=tex}
+\begin{equation} 
+\begin{split}
+ CM &= \frac{\int \: z \cdot s_v(z) \: dz} {\int \: s_v(z) \: dz},
+\end{split}
+(\#eq:centreOfMass)
+\end{equation}
+```
+where $z$ is the depth and $S_v(z)$ is the backscattering intensity at
+depth $z$.
+
+```{=html}
+<!--
+Inertia
+-->
+```
+##### *Inertia (I)*
+
+[@Bez] measures the dispersion or spread of the krill signal around the
+$CM$. It is a simple way to measure the spatial variability of a given
+distribution. High values indicate large and loosely packed swarms.
+
+It is the sum of the squared distances from the $CM$, weighted by the
+$S_v(z)$ at each distance and normalised by the total backscattering
+signal ($\int \: s_v(z) \: dz$):
+
+```{=tex}
+\begin{equation} 
+\begin{split}
+ I &= \frac{\int \: (z - CM)^2 \cdot s_v(z) \: dz} {\int \: s_v(z) \: dz}.
+\end{split}
+(\#eq:inertia)
+\end{equation}
+```
+```{=html}
+<!--
+Evenness
+-->
+```
+##### *Evenness (E)*
+
+is a measure to describe the area krill would occupy if all data cells
+contained the mean density at a single time stamp. It equals the measure
+of space over which a population would spread if it had the same density
+distribution. It is calculated as the squared integral of the
+backscattering strength in one ping divided by the depth integral:
+
+```{=tex}
+\begin{equation} 
+\begin{split}
+ E &= \frac{(\int \: s_v(z) \: dz)^2} {\int \: s_v(z)^2 \: dz}.
+\end{split}
+(\#eq:evenness)
+\end{equation}
+```
+In combination with the *Inertia*, it is a good approximation for a
+swarm´s density.
+
+### Solar Angle Calculations
+
+The solar angle is an excellent predictor of information on krill swarm
+behaviour under changing light. The sun's elevation angle describes the
+angle between rays emitted by the sun and a horizontal plane
+[@Kalogirou2022]. For every timestamp considered for further analysis, a
+geographical identifier - position in longitude and latitude - was
+assigned to the data. The coordinates originate from the ship's log
+file. The finely resolved coordinates were summarised and assigned to
+the closest acoustic record to add a location to every backscattering
+value. For every position defined by coordinates and time, the
+corresponding solar angle was calculated using the 'suncalc'-package
+[@Thieurmel2019] in R [@Rcore].
+
+\clearpage
+
+```{=html}
+<!--
+Here the part of the light data analysis starts 
+-->
+```
+## Light Data
+
+The light data sampled during the cruise intend to describe krill
+behaviour under changing underwater light conditions. Since light data
+is available from 4 May to 13 June, only the time between the two dates
+is considered for the light analysis. The aim is to calculate underwater
+light models for every region to predict the underwater light regime. In
+the first section of the light data analysis, the discrete surface
+measurements are translated into descriptive functions to obtain a
+continuous wavelength-specific intensity across the day. This step is
+necessary because the continuous surface light serves as input for the
+underwater light models. These models are based on underwater
+measurements and calculated in the second part of the light data
+analysis.
+
+### Surface Measurements
+
+Discrete measured values at the surface (fig.
+\@ref(fig:surfaceInputDis)) had to be transformed into a descriptive
+function to obtain a continuous course of the wavelength-specific light
+intensities. Based on exploratory data analysis, Gaussian functions fit
+the daily light dynamics:
+
+```{=tex}
+\begin{equation} 
+\begin{split}
+ E(\lambda,t) &= k \cdot \exp(-0.5 \cdot \frac{t - \mu}{\sigma^2}).
+\end{split}
+(\#eq:gauss)
+\end{equation}
+```
+Here, $\mu$ stands for the solar noon, assuming that the daily light
+intensity reaches its maximum at the sun's highstand (red line in fig.
+\@ref(fig:surfaceInputDis)). The variable $k$ defines the height of the
+curve's peak, and $\sigma$ is the standard deviation of the curve to
+control the width. The intensity $E(\lambda,t)$ depends on the time $t$
+and is unique for each wavelength $\lambda$. For all days including
+surface measurements, the solar noon was calculated with the
+'suncalc'-package by @Thieurmel2019. Wavelengths larger than 600 nm and
+smaller than 350 nm were discarded from the analysis.
+
+```{=html}
+<!--
+PLOT OF THE FITTED GAUSS CURVES 
+-->
+```
+```{r surfaceInputDis, fig.cap = "Discrete Light Measurement for two Days",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.95"}
+knitr::include_graphics(path = "figure/surfaceInputDis.pdf")
+```
+
+### Underwater Light Models
+
+The goal is to establish one underwater light model for each of the
+three study regions. The underwater light models are trained based on
+the underwater profile measurements. The profiles consist of measured
+light intensity values (in W/m\textsuperscript{2}) over depths up to
+\~188 m. In total, eight profiles are available. Through visual checks
+of the light profiles, three of the eight profiles were excluded for
+further analyses and restricted to only downcast data (data measured
+during the descent).
+
+Fig. \@ref(fig:exploratoryLightProfiles) illustrates the intensity data
+of the five remaining profiles with their corresponding depth. The
+intensity on the x-axis of the graph is logarithmic.
+
+With increasing depth, the intensity decrease of the logarithmic values
+is linear. Accordingly, the log-transformed intensities serve as input
+for a linear attenuation model.
+
+The profiles from 4 May serve as training data for a model used to
+predict underwater light at the Gerlache Strait, the profiles from 11
+and 16 May for the Bransfield Strait model and the profile from 12 June
+for the South Orkney Islands (fig. \@ref(fig:exploratoryLightProfiles)).
+
+With those five profiles, linear models calculate the
+wavelength-specific attenuation coefficient ($K_d$) for every region.
+The attenuation coefficient determines how quickly a particular
+wavelength loses intensity with increasing depth. The models only
+consider wavelengths between 350 nm and 600 nm, as in the surface
+measurements. Based on the sensors detection limit, values below 0.0125
+W/m\textsuperscript{2} are assumed to be measurement noise and excluded
+from the analysis.
+
+The aim of the three regional models is to estimate the
+wavelength-specific underwater light fields and relate the behaviour of
+krill to daily changes in light intensities.
+
+The surface values calculated in the section [Surface Measurements]
+serve as input to predict the underwater light intensity for about six
+weeks - the time between the first and last recorded light measurement.
+Only measured values were used to predict underwater light regimes for
+simplicity and to avoid uncertainties. In order to cover the available
+range of light intensities, the day with the most intensive and the day
+with the lowest solar radiation were taken as reference values.
+Accordingly, underwater intensities were determined for both cases.
+
+The wavelength dependent-intensity was calculated as a function of depth
+($z$),
+
+```{=tex}
+\begin{equation} 
+\begin{split}
+ E_d(\lambda,z) &= E(\lambda,t) \cdot \exp(K_d(\lambda) \cdot z),
+\end{split}
+(\#eq:extinction)
+\end{equation}
+```
+where $E(\lambda,t)$ is the surface radiance at time ($t$) and $K_d$ the
+wavelength and region-specific attenuation coefficient. For abstraction,
+it is assumed that the radiation measured at the surface penetrates
+completely into the water column. However, with exponential decrease,
+the loss of accuracy at great depths is minimal.
+
+#### *Isolumen* - {.unlisted .unnumbered}
+
+lines of equal light intensities at one wavelength - are calculated for
+a lower limit of photo behaviour in Antarctic krill. Information on
+light sensitivity data for *E. superba* is lacking. Therefore, the study
+relies on findings from other Euphausiids. @Cohen2015a reported a
+maximum light sensitivity at wavelength 487 nm for the Arctic species
+*Thysanoessa inermis*. An Isolumen at wavelength 487 nm and an intensity
+of 2.3 x 10\textsuperscript{-4} µmol m\textsuperscript{-2}
+s\textsuperscript{-1} is used to calculate the Isolumen
+
+\clearpage
+
+```{r exploratoryLightProfiles, fig.cap = "Log-transformed underwater intensity values depending on the wavelength",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.9"}
+knitr::include_graphics(path = "figure/exploratoryLightProfiles.pdf")
+```

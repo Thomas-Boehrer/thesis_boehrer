@@ -1,0 +1,92 @@
+<!--
+The bib chunk below must go last in this document according to how R Markdown renders.  More info is at http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
+-->
+
+# Erklärung des Autors {-}
+
+
+\flushleft{\textit{Friedrich-Alexander-Universität Erlangen-Nürnberg}} \hfill \break
+\textit{GeoZentrum Nordbayern}
+\bigskip
+\bigskip
+
+
+Name: ............................ Vorname: ................ \hfill \break
+\bigskip
+\bigskip
+Matrikelnummer: ................. 
+<!--
+\hfill \break
+\begin{center}
+\textbf{Selbständigkeitserklärung zur Masterarbeit}
+\end{center}
+
+\bigskip
+\bigskip
+-->
+
+\flushleft{Ich erkläre ausdrücklich, dass es sich bei der von mir eingereichten schriftlichen Arbeit mit dem Titel}
+
+\bigskip
+\bigskip
+
+\hrule
+
+\bigskip
+\bigskip
+
+\hrule
+
+\bigskip
+
+\flushleft{um eine von mir selbstständig und ohne fremde Hilfe verfasste Arbeit handelt. Ich erkläre, dass ich sämtliche in der oben genannten Arbeit verwendeten fremden Quellen, auch aus dem Internet (einschließlich Tabellen, Grafiken u. Ä.) als solche kenntlich gemacht habe. Insbesondere bestätige ich, dass ich ausnahmslos sowohl bei wörtlich übernommenen Aussagen bzw. unverändert übernommenen Tabellen, Grafiken u. Ä. (Zitaten) als auch bei in eigenen Worten wiedergegebenen Aussagen bzw. von mir abgewandelten Tabellen, Grafiken u. Ä. anderer Autorinnen und Autoren (Paraphrasen) die Quelle angegeben habe.}
+
+\flushleft{Ich erkläre hiermit weiterhin, dass die vorgelegte Arbeit zuvor weder von mir noch – soweit mir bekannt ist – von einer anderen Person an dieser oder einer anderen Hochschule eingereicht wurde.}
+
+\flushleft{Mir ist bewusst, dass Verstöße gegen die Grundsätze der Selbstständigkeit als Täuschung betrachtet und dass die Unrichtigkeit dieser Erklärung eine Benotung der Arbeit mit der Note "nicht ausreichend" zur Folge hat und dass Verletzungen des Urheberrechts strafrechtlich verfolgt werden können.}
+
+\bigskip
+\bigskip
+\bigskip
+
+\hrule
+\flushleft{(Datum) (Unterschrift)}
+
+
+<!-- 
+If you'd like to change the name of the bibliography to something else,
+delete "References" and replace it.
+-->
+
+
+
+# References {-}
+<!--
+This manually sets the header for this unnumbered chapter.
+-->
+\markboth{References}{References}
+<!--
+To remove the indentation of the first entry.
+-->
+\noindent
+
+<!--
+To create a hanging indent and spacing between entries. This line may need 
+to be removed for styles that don't require the hanging indent.
+-->
+
+\setlength{\parindent}{-0.20in}
+
+
+
+<!--
+This is just for testing with more citations for the bibliography at the end.  Add other entries into the list here if you'd like them to appear in the bibliography even if they weren't explicitly cited in the document.
+
+nocite: |
+  @item1,
+
+---
+nocite: | 
+  @angel2000, @angel2001, @angel2002a
+...
+-->

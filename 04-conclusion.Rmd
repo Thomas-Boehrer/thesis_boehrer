@@ -1,0 +1,19 @@
+# Conclusion and Outlook {-}
+
+
+The thesis shows regional and seasonal variations of Antarctic krill DVM. It highlights the life cycle stadium of krill as an important factor for the vertical migrational patterns in a population. 
+Adult Krill appear to perform a photoperiodic-induced DVM pattern. On the other hand, larvae krill must meet their metabolic needs by maintaining at the surface and feeding on plankton. The spawning season of krill is closely related to enhanced primary production. 
+Krill spawning grounds are located in highly productive areas (Bransfield Strait and Gerlache Strait).
+In areas without larvae, krill behaviour is influenced by the photoperiod. No cyclic rhythm in DVM is visible.
+
+A comprehensive dataset over multiple years would shed light on cyclic behaviour. Additional measurements on the krill size would consolidate the hypothesis of larvae krill that maintain in the surface waters.
+
+
+
+<!--
+If we don't want Conclusion to have a chapter number next to it, we can add the `{-}` attribute.
+
+**More info**
+
+And here's some other random info: the first paragraph after a chapter title or section head _shouldn't be_ indented, because indents are to tell the reader that you're starting a new paragraph. Since that's obvious after a chapter or section title, proper typesetting doesn't add an indent there.
+-->

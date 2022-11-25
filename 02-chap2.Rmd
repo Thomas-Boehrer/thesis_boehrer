@@ -1,0 +1,309 @@
+# Results
+
+The chapter on the results divides into two main parts - first, the description of the results of the processed acoustic data. This part focuses on the calculations of the three metrics - the centre of mass (CM), Inertia (I), and Evenness (E) - to describe the krill behaviour.
+
+The second part lays out the results of the light data analysis and merges the acoustic record with underwater light model predictions.
+
+
+## Acoustic Data
+
+The results of the metrics used to characterise krill behaviour are described in this section, focusing on seasonal and regional changes. The data come from the regions of South Orkney Islands, Bransfield Strait, and Gerlache Strait. They include the southern summer, autumn, and winter.
+
+Whenever the post-processing data possesses a backscattering value larger than zero (one per time unit), the corresponding [Metrics] for the signal exist. All calculated values are present in the results.
+
+
+### Centre of Mass (CM)
+
+The aim is to show the approximated vertical position of krill swarms at different months and under different light conditions throughout the time series. By explaining the position of the CM with different independent variables, here the elevation of the solar angle and the time, we gain insights into the triggers that cause diel vertical migration (DVM). Fig. \@ref(fig:scatterCmTime) concentrates on the CM depending on the time of the record, whereas fig. \@ref(fig:scatterCmSolarAngle) shows the CM with the solar angle on the x-axis.
+The points’ colours show the region of the recorded signal. The grey dots in the background (only in fig. \@ref(fig:scatterCmSolarAngle)) emphasise the variability of the data basis. First the section focuses on the description of monthly/seasonal and patterns of the CM. In the second part of the CM-results regional patterns are under investigation.
+
+#### Seasonal Patterns
+
+During the time with the longest photoperiod, December, krill stays in shallow waters, most of the time above 100 m. Especially during the night time, only a few accumulations stay below that 100 m border. The sun only remains for a few hours below the horizon in December, but precisely at that time, all krill accumulations are in the uppermost water layers (Fig. \@ref(fig:scatterCmSolarAngle)). The CM scatters into deeper regions when the sun´s angle exceeds zero degrees. 
+
+For the rest of the summer, January and February, the krill position shows clear signs of diel vertical migration (DVM). The vertical change is always associated with the sun crossing the horizon (Fig. \@ref(fig:scatterCmSolarAngle), B-D). At night, most krill maintain close to the surface, usually above 100 m, and cross this boundary in the morning and the evening. The depth and shallow water transition phase become shorter and more pronounced from January to February. Nevertheless, in January and February, the positioning of krill in the water column changes smoothly over longer times. 
+
+Strongly pronounced DVM is visible in March. Here, two sharp transition points are at around 6 am and 9 pm (Fig. \@ref(fig:scatterCmTime), D). Figure \@ref(fig:scatterCmSolarAngle), D, shows that when the sun is below the horizon (solar altitude < 0°), krill swarms occupy shallow water. When direct sunlight hits the surface, the position of the krill drops into deeper layers. Besides the migration trend, some krill swarms remain at the surface at any sun position. For the rest of the southern autumn, krill does not show a clear pattern of DVM. In April, the krill positions concentrate mainly in shallow water, with more exceptions to deep waters during the light phase of the day. In May, the sun appears only for a short time. The CM data is highly variable, comparable to April, but generally in deeper waters.
+
+The CM of krill shows no vertical diurnal fluctuations in winter. Especially in June, krill only barely position in waters above 100 m. The data points distribute between 100 and 200 m, lacking any sign of structured movement. In July, the last month of the time series, the vertical position of Antarctic krill remains variable, as in June. The only difference is the re-stocking of shallow water.
+
+
+```{r scatterCmTime, fig.cap = "Monthly Center of Mass (CM) variations depending on the Time", echo=FALSE, fig.align="center", out.extra="angle=0, scale =1"}
+knitr::include_graphics(path = "figure/scatterCmTime.pdf")
+```
+
+Well-defined seasonal differences and variations between months are visible. A clear pattern of diel vertical migration (DVM) during summer and parts of autumn is replaced by a variable distribution of krill position. In winter, krill inhabit deeper water layers than during the austral summer.
+
+
+
+#### Regional dynamics of the CM
+
+In addition to the seasonal variations, the graphs show different regional behaviour of *E. superba*.
+
+In the austral summer, krill at the South Orkney Islands show a clear diel pattern of high-standing krill when the sun is below the horizon and low-standing krill during the light phase. In December, when most of the krill at the South Orkney Islands transitions to deeper waters, krill in the Bransfield Strait remains at the surface. In January, the same pattern exists even more pronounced. In the Bransfield Strait, in January, krill accumulates hardly below 100 m. Contrasting the data points from South Orkney Islands, no vertical position change appears at the Bransfield Strait.
+
+Krill from the South Orkney Islands has a well-defined rhythm in vertical movement, changing the position with sunset and sunrise during the austral autumn (Fig. \@ref(fig:scatterCmTime), D). In March, krill at the Bransfield Strait stay in shallower water than krill at the South Orkney Islands. Besides some exceptions, krill swarms remain close to the surface. April and May possess records from the Bransfield Strait and the Gerlache Strait. Both regions show no clear sign of DVM. In April, the CM  in the Gerlach Strait splits into two parts. The majority of data points are above the 100 m boundary, and some points fall below 150 m of water depth. A similar data distribution is within the May record from the Gerlache Strait.
+
+A variable CM distribution characterises the winter in all regions. The distribution is variable and does not follow any clear pattern. In June, data from the Bransfield Strait and the South Orkney Islands barely climb over 100 m.
+
+\clearpage
+
+```{r scatterCmSolarAngle, fig.cap = "Monthly Center of Mass (CM) variations depending on the Solar Angle", echo=FALSE, fig.align="center", out.extra="angle=0, scale =1"}
+knitr::include_graphics(path = "figure/scatterCmSolarAngle.pdf")
+```
+
+
+\clearpage
+
+
+### Inertia
+
+A violin graph describes the Inertia [m\textsuperscript{-2}] to illustrate the variability of krill dispersal around the CM depending on the records' month and region (fig. \@ref(fig:inertiaDispersion)).
+Small values stand for densely packed accumulations, large ones for krill spread widely across the water column. Within the violin plots, boxplots clarify the distribution and indicate the median with a horizontal line.
+Since krill lives in shoals, the greatest deflection of the graph is usually at low values. Nevertheless, outliers with large values stand for widely dispersed swarms. The graph excludes all values above 1000 to focus on the relevant parts of the graph.
+
+In the austral summer (from December to February), krill in the Bransfield Strait mostly appear in compact swarms. In January, even more than in December, indicated by the flat base of the distribution. 
+The median values of the records from the Bransfield Strait are well below those of the South Orkney Islands record in both months. Krill swarms at the South Orkney Islands become more dispersed from December to January, maintaining similar Inertia values from January to March. From January to March, the constant distribution of the Inertia at South Orkney speaks for a constant shoaling dynamic.
+
+```{r inertiaDispersion, fig.cap = "Inertia: Dispersion of the krill swarm",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.7"}
+knitr::include_graphics(path = "figure/dispersion_violin.pdf")
+```
+
+In autumn - March to May - the Inertia at the Bransfield Strait rises compared to the winter months. In March and April, the median is significantly smaller than in May. May in the Bransfield Start and April at the Gerlache Strait possess the largest medians of the Inertia across the whole dataset. Here the krill swarms appear in their most dispersed way.
+
+In June and July (austral winter), krill swarms generally are more compact than in autumn. Nevertheless, high variability in the distribution of Inertia is visible.
+
+The Bransfield Strait, particularly, is a region with high Inertia variability. High values at the end of autumn and June replace small values in the summer and the beginning of autumn. A similar but less pronounced trend underlay the data from the South Orkney Islands.
+
+
+### Evenness
+
+The Evenness [m] describes the range occupied by the krill at a given time if the points per time unit possess their mean backscattering strength. In general, high values indicate large and loosely packed accumulations. Again a violin plot with integrated box plots visualize the results (fig. \@ref(fig:evenness)).
+
+The distribution of the Evenness varies significantly between seasons and regions. In the austral summer, krill shoals from South Orkney and the Bransfield Strait form the data basis. In December, January, February, and March (autumn), the South Orkney Islands record has a median around values from about 45 to 50 m and only a few outliers above 100 m. The data from the South Orkney Islands suggests that small and densely packed swarms alternate with large and loose accumulation during these months.
+Krill swarms at the Bransfield Strait are formed differently during the same time of the year. Here, compact and small swarms dominate in December and January.
+
+In autumn, the Evenness distribution at the Bransfield Strait approaches that of the South Orkney Islands. The Evenness values of the krill swarms become more diverse than in the summer. 
+
+In the winter, the swarm Evenness at the Bransfield Strait is smaller than at South Orkney, indicating more compact accumulations. In July, many small values alternate with medium-sized values around 50 m resulting in a bimodal distribution. The bimodal distribution means small compact swarms and unevenly distributed populations around the South Orkney Islands exist in the winter.
+
+
+```{r evenness, fig.cap = "Monthly Evenness of krill accumulations",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.7"}
+knitr::include_graphics(path = "figure/evenness_violin.pdf")
+```
+
+
+```{=html}
+<!--
+{r scatterCmDailyCycle, fig.cap = "Monthly Center of Mass (CM) variations depending on the Time of the Day", echo=FALSE, fig.align="center", out.extra="angle=0, scale =0.8"}
+knitr::include_graphics(path = "figure/scatterCmDailyCycle.pdf")
+-->
+```
+
+
+
+
+
+
+\clearpage
+
+
+## Light Data
+
+The output of the underwater light models presented in this section intends to clarify the relationship between solar irradiance and the associated light intensity in the water column with krill behaviour. The following section shows the outcome of the light data analysis.
+First the section presents the outcome of the modelled light data at the surface. Then in section two, the output of the underwater light models is described. The last part of the results chapter compares the predictions for underwater light regimes in May and June to krill behaviour. The light data analysis always refers to the period from 4 May 2021 to 13 June 2021.
+
+
+### Solar irradiance at the surface 
+
+This part focuses on the results of the modelled daily light intensity at the surface. The results of these calculated surface values serve as input for the underwater light models.
+
+Continuous solar irradiance values are available for 17 days between 4 May 2021 and 13 June 2021. 
+The light intensity on the surface depends strongly on the weather conditions. Therefore, the daily spectrum with the strongest and weakest surface irradiation was selected as model input to cover all eventualities. Comparing the daily intensities, 12 May was the maximum, and 31 May was the minimum. Accordingly, the underwater light models use the intensities of both days as input values.
+
+
+|                                      |**max**     |**min**     |
+|--------------------------------------|------------|-----------:|
+|**Date**                                 | 2021-05-12 | 2021-05-31 |
+|**Solar Noon**                             |   12:48    |    12:50   |
+|**Max. Intensity [W/m\textsuperscript{2}]**|    104     |     43    |
+
+Table: Dates considered as maximum and minimum input for the underwater light model
+
+
+Figure \@ref(fig:lightIntInput) displays these daily wavelength intensities. The figure compares the intensities depending on time and wavelength. It shows an excerpt of the day - from 8 am to 6 pm and wavelengths between 350 nm and 600 nm. The absolute intensities vary drastically. Nevertheless, the diurnal and wavelength-dependent distribution describes the same intensity pattern. Wavelengths below 400 nm possess the lowest intensity, whereas the band between 450 and 500 nm carries the greatest intensity. At around 450 nm, a negative intensity anomaly occurs. From 500 to 600 nm, the intensity values decrease again.
+
+```{r lightIntInput, fig.cap = "Continous light intensity values to model underwater light attenuation",echo=FALSE, fig.align="center", out.extra="angle=0, scale =1"}
+knitr::include_graphics(path = "figure/lightIntInput.pdf")
+```
+
+```{=html}
+<!-- 
+MAYBE INCLUDE GAUSSIAN CURVES
+-->
+```
+
+
+<!-- 
+HERE STARTS A NEW PART
+-->
+
+### Underwater Light Models
+
+
+
+One linear, wavelength-dependent model predicts the underwater light regime for every region (South Orkney Islands, Bransfield Strait, and Gerlache Strait). The following section compares the output of the three regional models.
+
+The attenuation coefficient/kD-value determines how fast light intensities decrease within the water column. Small kD-values tell that the light extinguishes quickly. Fig. \@ref(fig:lightModelkD) plots the kD-values for each wavelength and region. 
+
+The course of the values shows the same curvature characteristics, independent of the region. Peak positioning varies slightly from 484 nm at the Gerlache Strait to 491 nm at South Orkney. The attenuation coefficients from the Bransfield Strait and the Gerlache Strait are almost equal. 
+
+The data that trained the model for the South Orkney Islands were collected in June (austral winter) - the data for the Bransfield and the Gerlach Strait models in autumn. A lower sun angle in the winter explains the overall smaller attenuation coefficients at the South Orkney Islands.
+
+
+```{r lightModelkD, fig.cap = "Underwater Light Models: Attenuation Coefficient",echo=FALSE, fig.align="center", out.extra="angle=0, scale =1"}
+knitr::include_graphics(path = "figure/lightModelkD.pdf")
+```
+
+
+<!-- 
+HERE STARTS A NEW PART
+-->
+
+### Light Model Predictions
+
+The final part of the results chapter combines the processed acoustic data and the underwater light predictions.  
+
+The section outlays the acoustic record merged with the isolumen at an intensity of 2.3 x 10\textsuperscript{-4} µmol m\textsuperscript{-2} s\textsuperscript{-1} at wavelength 487 nm. Only the days whose acoustic recording is complete are within this section. Five days that cover the most characteristic features of the echograms are analysed in greater detail with the help of the [Metrics] calculated for the acoustic record.
+
+Only sunlight is used to model the underwater light. Accordingly, the isolumen project daylight conditions. Lunar irradiance is ignored. In the following graphics, the red line describes the isolumen for the lowest surface irradiance measured. Beige is the penetration depth for the maximum solar irradiance. 
+
+Light in the Bransfield Strait penetrates deeper into the water under the same surface light conditions as around the South Orkney Islands. The kD-value/attenuation coefficient (Fig.: \@ref(fig:lightModelkD)) for South Orkney is smaller since it models the winter conditions, where light extinct faster.
+Data on the Gerlache Strait is available in the appendix [appendix] (there is no complete day of acoustic data).
+
+
+#### Isolumen
+
+```{r weeklyPlotThesis1, fig.cap = "Light Isolines A, Bransfield Strait",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.1"}
+knitr::include_graphics(path = "figure/weeklyPlotThesis1.pdf")
+```
+
+##### Isolumen A, Bransfield Strait (Fig.: \@ref(fig:weeklyPlotThesis1)) {.unlisted .unnumbered} 
+The first five days of the record show similar backscattering signals of krill. When the light intensity is below the calculated isolumen, krill spreads across a large portion of the water column at night. Only a diffuse signal is visible. 
+
+During the day, light penetrates the sea floor, and krill cannot migrate to deeper regions staying above the isolumen. When light intensifies, krill appears more densely packed in the water column than during the night time. 
+On 8 May, krill accumulates in shallower waters during the photoperiod, and a reverse DVM pattern is visible. It is the only day of the six-week time series show reverse DVM.
+
+
+On the graph showing 12 May, the sea bottom is below the detection limit. Here krill dive deeper into the water during the day. At night they rise again towards the surface in diffuse accumulation. Something similar appears on 7 and 9 May around noon. 
+
+
+```{r weeklyPlotThesis2, fig.cap = "Light Isolines B, Bransfield Strait",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.1"}
+knitr::include_graphics(path = "figure/weeklyPlotThesis2.pdf")
+```
+
+##### Isolumen B, Bransfield Strait (Fig.: \@ref(fig:weeklyPlotThesis2)) {.unlisted .unnumbered}
+Comparable to figure \@ref(fig:weeklyPlotThesis1), krill accumulations densify during the day. They spread along the sea floor, mirroring the relief of the bottom (especially on 15 and 16 May). On most days - except on 14 May - the krill signal is detected in deeper layers during the day.
+In the evening, the krill accumulations spread towards the surface alongside the isolumen. The bathymetry limits krill migration to the uppermost 150 - 200 m.
+
+
+```{r weeklyPlotThesis3, fig.cap = "Light Isolines C, Bransfield Strait",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.1"}
+knitr::include_graphics(path = "figure/weeklyPlotThesis3.pdf")
+```
+
+##### Isolumen C, Bransfield Strait (Fig.: \@ref(fig:weeklyPlotThesis3)) {.unlisted .unnumbered}
+Here, especially the bathymetry show variation. On 18 and 19 May, krill swarms are defined by a similar rhythm as before - densely packed during the day and diffuse scattering at night. The rise of the population with decreasing light intensity in the evening is also in synchrony with the isolumen. At around 9 o'clock on 22 May, krill sinks abruptly towards the bottom, parallel to the isolumen, having a delay of about one hour. No krill is detected when the bathymetry exceeds the depth limit of the echogram.
+
+
+```{r weeklyPlotThesis4, fig.cap = "Light Isolines D, Bransfield Strait",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.1"}
+knitr::include_graphics(path = "figure/weeklyPlotThesis4.pdf")
+```
+
+##### Isolumen D, Bransfield Strait (Fig.: \@ref(fig:weeklyPlotThesis4)) {.unlisted .unnumbered}
+Large and loosely packed swarms at night and smaller but dense accumulations during the day define the krill behaviour also at the end of May. If the sea floor does not restrict the population, krill seldom migrate above the calculated isolumen. 
+
+
+Towards the end of May and the beginning of June (austral winter), the diving depth of krill increases throughout the day. Krill remains almost exclusively below 100 m.
+
+```{r weeklyPlotThesis5, fig.cap = "Light Isolines E, South Orkney",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.1"}
+knitr::include_graphics(path = "figure/weeklyPlotThesis5.pdf")
+```
+
+##### Isolumen E, South Orkney (Fig.: \@ref(fig:weeklyPlotThesis5)) {.unlisted .unnumbered}
+At the South Orkney Islands, diffuse krill accumulations stay below the isolumen in larger depths than at the Bransfield Strait. The bottom does not restrict the krill movement vertically. No clear pattern is within the data. 
+
+\bigskip
+
+
+##### Findings in the Time Series
+
+From the beginning of May to mid-June, krill behaviour changes. Here, the most important observations of the echograms are summarised.
+
+1. Krill displays reverse DVM at the beginning of May 
+2. The Bathymetry limits the sinking process
+3. Swarming during the photoperiod
+4. Fanning of the swarm during the dark period
+5. Krill ascent/descent in conjugation with the Isolumen
+6. Delayed sinking with increasing irradiation
+7. Sinking of the population in winter
+
+
+\clearpage
+
+#### Swarm Characteristics under Changing Light
+
+Four selected days of the time series of echograms are presented here with the corresponding metrics. This gives an impression of how krill swarms cope with changing light conditions.
+Each plot incorporates the CM (black line within the echogram), maximum and minimum Isolumen (detection threshold for Antarctic krill), the Inertia and the Evenness calculated for the signal.
+
+<!--
+```{r metricsCompA, fig.cap = "Metrics Comparision for 8 May under changing solar irradiance",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.9"}
+knitr::include_graphics(path = "figure/metricsVsRaw20210508.pdf")
+```
+
+##### 2021-05-08, Bransfield Strait (Fig.: \@ref(fig:metricsCompA)) {.unlisted .unnumbered}
+The CM remains constant throughout the day at a depth of 50 m. It is noticeable that krill aggregates differently during the day. The signal spreads across the whole water column when no solar light is available.
+
+
+
+```{r metricsCompB, fig.cap = "Metrics Comparision for 12 May under changing solar irradiance",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.9"}
+knitr::include_graphics(path = "figure/metricsVsRaw20210512.pdf")
+```
+
+In the echogram, the position of the CM drops significantly when light penetrates deep into the water column. Krill mirrors the spikes of the bathymetry under daylight conditions but spreads across the whole water column during the night. The spread around the CM (Inertia) becomes larger below the isolumen. Nevertheless, krill maintains an even distribution across the whole water column during the dark phase, indicated by large Evenness values. The spreading is associated with the lift of the isolumen.
+-->
+
+```{r metricsCompC, fig.cap = "Metrics Comparision for 15 May under changing solar irradiance",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.9"}
+knitr::include_graphics(path = "figure/metricsVsRaw20210515.pdf")
+```
+
+##### 2021-05-15, Bransfield Strait (Fig.: \@ref(fig:metricsCompC)) {.unlisted .unnumbered}
+Below the Isolumen, krill distributes widely across the water column, and the CM remains constant at a depth of 100 m. Before noon, when the Isolumen cross the krill signal and the CM, after a lack of about three hours, the CM shows signs of descending. Then krill appear as a compact swarm close to the sea floor (low Inertia), preventing further sinkage. Also, the Evenness becomes smaller during deep light penetration.  With decreasing light, the CM rises quickly and levels off again at 100 m, and the krill spreads out widely but evenly in the water column. 
+
+\clearpage
+
+```{r metricsCompD, fig.cap = "Metrics Comparision for 28 May under changing solar irradiance",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.9"}
+knitr::include_graphics(path = "figure/metricsVsRaw20210528.pdf")
+```
+
+##### 2021-05-28, Bransfield Strait (Fig.: \@ref(fig:metricsCompD)) {.unlisted .unnumbered}
+Here, a similar pattern as in fig. \@ref(fig:metricsCompC) exists. Widely distributed krill by night transitions to compact krill found on the seabed during daytime. In this echogram, on the other hand, krill are free to sink into deeper waters by night. Descent and ascent are associated with the light detection boundary of Antarctic krill. The spread around the CM is high when the CM is below the Isolumen very small within the light boundaries. The Evenness does not change much, indicating swarm compaction when light is available.
+
+\clearpage
+
+```{r metricsCompE, fig.cap = "Metrics Comparision for 3 June under changing solar irradiance",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.9"}
+knitr::include_graphics(path = "figure/metricsVsRaw20210603.pdf")
+```
+
+##### 2021-06-03, Bransfield Strait (Fig.: \@ref(fig:metricsCompE)) {.unlisted .unnumbered}
+This echogram already records winter conditions in the Bransfield Strait. A sudden drop in the CM compared to (fig. \@ref(fig:metricsCompC and \@ref(fig:metricsCompD) is visible (~100 m). The sea floor does not restrict the vertical krill position over most days. During the period of most intense sunlight, the krill signal compacts (low Inertia) and also appears to drop by a few metres. A high krill dispersion and Evenness exist when most of the krill signal remains below the Isolumen.
+
+\clearpage
+
+```{r metricsCompF, fig.cap = "Metrics Comparision for 12 May under changing solar irradiance",echo=FALSE, fig.align="center", out.extra="angle=0, scale =.9"}
+knitr::include_graphics(path = "figure/metricsVsRaw20210611.pdf")
+```
+
+##### 2021-06-11, South Orkney (Fig.: \@ref(fig:metricsCompF)) {.unlisted .unnumbered}
+The last echogram comes from the South Orkney Islands and verifies the overall sinking trend of krill; basically, no signal is recorded. While the previous section still showed a vertical movement with changing sunlight, this has disappeared here entirely. 
+
+

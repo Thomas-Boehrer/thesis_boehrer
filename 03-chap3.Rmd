@@ -1,0 +1,194 @@
+```{r include_packages_2, include = FALSE}
+# This chunk ensures that the thesisdown package is
+# installed and loaded. This thesisdown package includes
+# the template files for the thesis and also two functions
+# used for labeling and referencing
+
+```
+
+# Discussion
+
+The most striking behaviour of *E. superba* is diel vertical migration (DVM) from deep water layers to the surface at the beginning of the night and backward at the start of the day. Even though they seem linked to daily rhythms, there is evidence that these patterns are more complex.
+The presented study provides new insights into the species' seasonal and regional vertical migration behaviour under different light conditions.
+
+<!--
+The discussion of the results presented in the previous chapter focuses first on Antarctic krill's seasonal variations in vertical migration behaviour. Then, regional divergences in DVM are the core of the debate. Finally, the chapter gives insights into the timing of DVM and swarming behaviour linked to the local underwater light regime. 
+-->
+
+## Seasonality and the Diel Vertical Migration of *E. superba*
+
+
+The ultimate evolutionary cause for DVM is the avoidance of visual predators [@Lampert1993UltimateCO; @0457]. Resting in deep waters alternates with the need to forage, leading to nightly upward migration [@Hays2003]. 
+Meeting this hypothesis, Antarctic krill's DVM should result in a typical nocturnal pattern caused by balancing two conflicting needs, food/exposure and shelter/starvation.
+
+According to @Hays2003, light regulates the DVM in zooplankton communities. However, also food availability can play a major role in synchronizing the vertical migration pattern by overshadowing the role of light [@PEARREJr.2003]. Moreover, another local factor strongly affects krill's DVM: predator pressure [@Cresswell2009]. The Southern Ocean environment exhibits extreme seasonal fluctuations, especially in light and food availability [@knox2006biology]. 
+With variable seasons in high latitudes and the shifts in the life cycle of Antarctic krill, the species might face problems when the cause of DVM is solitary. Flexible external and internal triggers favour a successful DVM. 
+
+
+<!--
+#########################
+Not only the reproductive cycle of Antarctic krill is closely linked to seasonal variations. According to @marschall1985structural, krill larvae simultaneously appear in the surface layers as the phytoplankton bloom in the austral summer. The larvae and the adults that release many batches of embryos during the austral summer require large amounts of food. Adults need a lot of energy for reproductive reasons. Extensive food uptake is essential for larvae to survive the early critical stages and prepare for the winter [@QUETIN1991]. Especially individuals that have such a high energy demand will not leave the food-rich areas with an energy deficit. 
+-->
+
+### Summer
+
+According to @Cisewski2016, krill might stop performing synchronized DVM when the sun barely goes down in the summer. Increasing sunlight intensities, together with long days, cause high surface irradiance. Primary production enhances in the photic zone, and phytoplankton is widely available for krill. In summer, krill display high levels of feeding activity [@Meyer2010] and sexual maturation [@Kawaguchi2007]. High food availability at the surface has to be weighed against visibility to predators (high reward vs high risk). 
+
+What we see in the data are different DVM patterns depending on the record's region. 
+
+#### Summer - Bransfield Strait
+The Bransfield Strait record of the CM maintains close to the surface without indicating vertical dynamics. 
+
+The ultimate reason for the lack of DVM at the Bransfield Strait is the spawning season of Antarctic krill, and the phytoplankton blooms in the Bransfield Strait. The largest plankton blooms in the Bransfield Strait happen in December [@HolmHansen1991]. During these annual plankton blooms, the food concentration is high in the photic zone. The spawning season of *E. superba* correlates with high primary production [@10.2307/1310217], so that the first feeding stage of krill larvae appears at the surface simultaneously with the blooms [@marschall1985structural].
+
+Food availability must be long enough to ensure successful overwintering since krill larvae can only store about 6 - 25% of their dry mass [@meyer2002feeding] and need regular food uptake [@meyer2005effects].
+Krill spawning might take up to three months west of the West Antarctic Peninsula, ensuring the right timing with high primary production [@10.2307/1310217]. Both spawning females and larvae require large amounts of energy [@QUETIN1991]. Individuals with high energy demand will not leave the food-rich areas in the surface layers with an energy deficit. 
+
+As proposed by @PEARREJr.2003, food availability/the necessity of energy consumption overturns light's role in DVM in the Bransfield Strait's summer.
+Very densely packed pack swarms in the summer of the Bransfield Strait are likely a response to predators in the shallow waters [@Ritz2000]. 
+
+#### Summer - South Orkney Islands
+At the South Orkney Islands, krill describes an increasingly pronounced nocturnal DVM pattern from December to February. Concretely, this means krill forages at the surface when light is lowest over 24 h. The migration is in synchrony with sunset and sunrise.
+
+
+
+### Autumn 
+
+@QUETIN1991 propose a mostly nocturnal DVM pattern during spring and autumn when light conditions are not extreme. As we have seen in the previous [Summer]-section, Antarctic krill show great plasticity in their behaviour between different regions besides seasonal variability.
+
+Over three months (March to May) and across three regions (Gerlache Strait, Bransfield Strait, and South Orkney Islands), the vertical positioning of krill is variable. 
+
+#### Autumn - Gerlache Strait
+The Gerlache Strait appears to be a spawning habitat, like the Bransfield Strait [@spiridonov1995spatial]. 
+Larvae tend to be restricted to areas with low surface temperatures that extends to greater depths [@mackintosh1972life].
+Within the Bransfield Strait, @Capella1992 reported the coldest water temperatures (< 0°C at all depths) around the Antarctic Peninsula. 
+Therefore, and since no clear pattern of DVM is visible and most of the CM data from the Gerlache Strait maintains in shallow waters, the population presumably consists mainly of larvae from the previous spawning season. 
+
+The spawning highly influences the vertical distribution of krill in March. A slightly stronger downward trend of krill distribution in the water column is visible in the May data from the Bransfield Strait. The May results of the  Bransfield Strait and the light data are topics of the last section in the discussion chapter.
+
+
+#### Autumn - South Orkney Islands
+The South Orkney Pattern displays an archetypical diurnal DVM pattern. The evenness most frequently has small values, indicative of evenly packed swarms, that occur mostly at the surface while feeding to protect against predators.
+The sinking at sunrise appears in a narrower time range than the ascent (fig. \@ref(fig:scatterCmTime), D). In this case, light is likely the trigger for krill rhythmicity. An urgent need for nutrient uptake does not overturn the monotonous diurnal migration that krill describe around the South Orkney Islands. The photoperiod controls the DVM. 
+
+<!--
+From December to March, the bimodal vertical distribution of the CM becomes more pronounced at the South Orkney Islands. This type of cyclicity requires populations that do not have a different rhythm imposed on them by other triggers. 
+
+The origin of krill stock at the South Orkney Islands remains unclear 
+
+
+
+
+
+
+Nevertheless, an important finding of @atkinson2001south is that krill abundance around South Georgia (north of the South Orkney Islands) is dependent on recruitment from areas west of the Antarctic Peninsula. In the south of the Bransfield Strait (west of the Antarctic Peninsula and north of the Gerlache Strait), various studies report a high concentration of krill larvae [@Siegel1989; @Caspers1963].
+
+According to [@Hofmann1998KrillTI], larvae are transported from the spawning grounds west of the Antarctic Peninsula (Gerlache Strait, Bransfield Strait) with currents associated with the Southern Antarctic Circumpolar Current Front (SACCF) and Southern Boundary of the ACC (SBF) across the Scotia Sea. Thereby they cross the region north of the South Orkney Islands.
+
+The Bransfield Strait is known for its phytoplankton blooms in summer. The temporal appearance of the blooms is highly variable, causing krill to release many batches of embryos during the summer months. The timing must be such that the larvae can feed soon after reaching the surface. 
+
+-->
+
+
+
+### Winter
+
+Low primary production during the winter months results from short days with weak sunlight intensities. Krill adapts to food- and light-depleted conditions by reducing feeding, metabolic activity, or even negative growth rates [@Kawaguchi2007; @Meyer2011].
+
+
+During reduced light conditions in winter, krill move to deeper water layers [@Siegel2005].
+Diurnal rhythms in lightless environments such as the deep sea [@Haren2013], the polar night [@Berge2009] or simply below the visual perceptual threshold of species must involve an endogenously induced rhythm. Krill are known to live close to the bottom, even at depths around 400 m [@Kawaguchi1986TheOS]. As proposed by @Taki2005, krill perform a similar deep vertical migration in winter. 
+
+The acoustic winter record is resolved in two regions: Bransfield Strait and the South Orkney Islands. The data confirm that krill records maintain in deeper waters during the austral winter. The distribution of the CM is variable, and since no significant swarming is visible by investigating the Inertia and the Evenness of the swarm, krill does not face predation pressure. Even if no vertical migration can be detected in the data, it cannot be ruled out in principle, as the acoustic data are only resolved down to a depth of about 250 m.
+
+
+
+
+
+
+<!--
+\bigskip
+
+
+
+Changes in krill physiology accordingly lead to altered migration and swarming behaviour.
+
+With water temperature remaining within a narrow range, the photoperiod and light intensity remain the relevant environmental parameters to control primary productivity . 
+
+add references for winter migration ....
+
+
+
+
+
+The data presented in the study show a different pattern. Even though krill appears in the uppermost water layers throughout the day,  
+
+
+
+
+
+
+
+
+
+\bigskip
+
+All of these influences affect the migration behaviour in Antarctic krill. Besides a deep vertical migration al pattern data presented in the thesis
+
+
+
+
+The results of this study partly support these types of seasonality in krill's vertical migration behaviour. 
+
+
+
+
+In February only, data on the vertical position ([Centre of Mass (CM)]) show an almost perfect diurnal DVM pattern synchronized with the solar angle. 
+
+At that time, when the sun is below the horizon, krill accumulates at the surface. Furthermore, the Inertia (dispersion of the krill swarm) is highly variable in February. After @Ritz2000, this would mean that krill migrate in densely packed swarms to the surface since locomotion in assemblages requires less oxygen. The records with a larger Inertia then originate from deeper regions.
+
+
+
+However, a nocturnal DVM alone does not appear as the ideal strategy for the rest of the summer when specific conditions like food availability or the presence/absence of predators are not met. The findings suggest that krill DVM is flexible and can react to spontaneous variations [@Cresswell2009] and the needs of individuals.
+
+
+
+\bigskip
+
+## Regional DVM patterns in *E. superba*
+
+
+The species displays a circumpolar distribution, with a latitudinal range from 50°S to 74°S [@Siegel2016a]. Regional differences in photoperiod, nutrient availability or predatory pressure can be diverse. 
+
+The Antarctic Peninsula region, which includes the Bransfield and the Gerlache Strait, is sampled most intensively but still lacks continuous annual records on krill. The lack of information makes it difficult to classify results, and further research is necessary.
+
+Nevertheless, an important finding of @atkinson2001south is that krill abundance around South Georgia (north of the South Orkney Islands) is dependent on recruitment from areas west of the Antarctic Peninsula. In the south of the Bransfield Strait (west of the Antarctic Peninsula and north of the Gerlache Strait), various studies report a high concentration of krill larvae [@Siegel1989; @Caspers1963].
+
+According to [@Hofmann1998KrillTI], larvae are transported from the spawning grounds west of the Antarctic Peninsula (Gerlache Strait, Bransfield Strait) with currents associated with the Southern Antarctic Circumpolar Current Front (SACCF) and Southern Boundary of the ACC (SBF) across the Scotia Sea. Thereby they cross the region north of the South Orkney Islands.
+
+The Bransfield Strait is known for its phytoplankton blooms in summer. The temporal appearance of the blooms is highly variable, causing krill to release many batches of embryos during the summer months. The timing must be such that the larvae can feed soon after reaching the surface. 
+
+
+Since juvenile krill need to consume enough food to survive, migration to food-depleted deeper regions is not an option. Krill form compact swarms to protect themselves against predators at the Bransfield Strait. 
+
+-->
+
+
+## Krill migration in late autumn and early winter
+
+The detailed analysis of the six-week bioacoustic record finely resolves krill behaviour in the late autumn, in the Bransfield Strait, and at the beginning of winter at the South Orkney Islands and the Bransfield Strait.
+
+Finely resolved variations in DVM become visible by studying the echograms directly in conjunction with the calculated metrics. Additionally, modelled underwater light fields help search for DVM's regulatory system. 
+\bigskip
+
+Usually krill performs nocturnal DVM. However, as shown in the first part of the discussion, different patterns of vertical krill positioning have been observed. They largely depend on the season and the region. In laboratory studies, @Gaten2008 identified endogenous rhythms of locomotion with a 12 h period, supporting the circadian clock to play a role in DVM timing. Still, light is seen as the main proximate cue in driving DVM.
+However, an endogenous timing system would be beneficial for krill. When performing a nocturnal DVM, an endogenous clock could perfectly time the ascent and descent [@Cohen2005]. The extreme seasonality of the Southern Ocean requires a flexible migration trigger. Again, the light would be the most intuitive DVM trigger for visual predator avoidance.
+
+In May, vertical fluctuations of the krill position are visible in the Bransfield Strait. A closer look at the echograms shows that krill behaviour varies between the photoperiod and the dark phase. Krill accumulations fan out when no light is available and build dense aggregations above the detection limit to protect against predators. The findings suggest that some individuals of the krill swarm still need to feed in higher waters, and the rest maintains in deeper waters leading to a dispersed krill signal. The downward trend during the day is not always clear since the bathymetry often limits the sinking. The ascent in the evening is in conjunction with the detection limits of krill.
+
+The findings of the underwater light model predictions support the hypothesis of light as the main trigger of DVM. Krill do not only react with sinking to increasing light. Often, additional compaction of the signal is visible. In May, the bathymetry alters the DVM pattern.
+
+
+
+
+

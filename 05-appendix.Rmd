@@ -1,0 +1,103 @@
+`r if(knitr:::is_latex_output()) '\\appendix'`
+
+`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'` 
+
+
+# Calculation of the TVG and Range Amplification
+
+
+## Range Amplification 
+Assuming that the water temperatures and the salinity of the seawater were constant, the speed of sound was then calculated as a function of depth. Following the nine-term equation by @Mackenzie1981: 
+
+\begin{equation} 
+\begin{split}
+ c\left(d\right) &= 1448.96 + 4.591  \cdot T  - 5.304  \cdot 10^{-2} \cdot T^2 + 2.374 \cdot 10^-{4} \cdot T \\ 
+   &\quad + 1.340 \cdot (S - 35) + 1.630 \cdot 10^{-2} \cdot d + 1.675 \cdot 10^{-7} \cdot d^2 \\
+   &\quad - 1.025 \cdot 10^{-2} \cdot T^{(S - 35)} - 7.139 \cdot 10^{-13} \cdot T \cdot d^3,
+\end{split}
+(\#eq:speedOfSound)
+\end{equation} 
+
+where $c$ is the sound speed ($m/s$) depending on the sample's depth, $d$, $T$ is the temperature in \textdegree C, and $S$ stands for the salinity in \textperthousand. The formula validates for temperatures from -2 to 30 \textdegree C, salinity from 25 to 40 \textperthousand, and depths up to 8000 m [@Mackenzie1981]. The salinity was kept constant at 34 \textperthousand, and the temperature at 2 \textdegree C. 
+
+
+```{=html}
+<!--
+TVG is Missing and needs to be described 
+link it to the speed of sound 
+-->
+```
+
+
+
+\begin{equation} 
+ r_{tvg} = r - ( \tau \cdot (\frac{c}{4})),
+(\#eq:TVG)
+\end{equation} 
+
+
+```{=html}
+<!--
+Sound absorption 
+-->
+```
+
+## Absorption Coefficient
+With increasing depth, the oscillating sound waves tone down, and the intensity decreases. @Francois1982a introduced a formula to calculate the absorption coefficient for sound waves in seawater. This formula is based on two main assumptions:
+At low frequencies, sound waves in the Ocean are attenuated because of chemical relaxation effects in the water [@Francois1982a] and viscous intensity absorption is relevant at high frequencies above 100 kHz [@Francois1982]. @Ainslie1998 simplified the formula of @Francois1982a, making the variable dependencies transparent, but keeping the same accuracy in the results. Here, the equation of @Ainslie1998,
+
+\begin{equation} 
+\begin{split}
+ \alpha &= 0.106 \cdot \frac{f_1 \, f^2}{f^2 + f_1^2} \cdot e^{(pH - 8) / 0.56} + 0.52 \: (1 + \frac{T}{43})(\frac{S}{35})\\  &\quad \frac{f_2 \, f^2}{f^2 + f_2^2} \cdot e^{-z/6} + 0.00049 \: f^2 \: e^{(-T/27 + z/17)},
+\end{split}
+(\#eq:absorption)
+\end{equation}
+
+is used to calculate the absorption coefficient $\alpha$, in dB/km. Temperature ($T$), pH-Value ($pH$), and salinity ($S$) stay the same as in \ref{eq:speedOfSound}. Here $f_1$ stands for the relaxation frequency of boric acid and $f_2$ for magnesium sulphate. 
+
+```{=html}
+<!--
+The formula fits the following oceanographic conditions:
+Unsure but maybe include the conditions that meet the requirements of the equation 
+-->
+```
+
+\begin{equation} 
+\begin{split}
+ f_1 &= 0.78 \: \sqrt{(\frac{S}{35})} \; e^{(T/26)}\;\;\;\;\;(\text{boric acid})
+\end{split}
+(\#eq:absorptionConditions)
+\end{equation}
+
+\begin{equation} 
+\begin{split}
+ f_2 &= 42 \: e^{(T/17)}\;\;\;\;\;(\text{magnesium sulphate})
+\end{split}
+(\#eq:absorptionConditions2)
+\end{equation}
+
+
+
+
+
+
+
+
+<!--
+If you feel it necessary to include an appendix, it goes here.
+
+
+This first appendix includes all of the R chunks of code that were hidden throughout the document (using the `include = FALSE` chunk tag) to help with readibility and/or setup.
+
+**In the main Rmd file**
+
+```{r ref.label='include_packages', results='hide', echo = TRUE}
+```
+
+**In Chapter \@ref(ref-labels):**
+
+```{r ref.label='include_packages_2', results='hide', echo = TRUE}
+```
+-->
+
+
